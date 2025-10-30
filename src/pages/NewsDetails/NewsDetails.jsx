@@ -9,18 +9,20 @@ const NewsDetails = () => {
   console.log("News ID:", id);
 
   return (
-    <div className="w-11/12 mx-auto space-y-20">
-      <Header></Header>
-      <div className="grid grid-cols-12">
+    <body className="w-11/12 mx-auto">
+      <header>
+        <Header></Header>
+      </header>
+      <main className="grid grid-cols-12 mt-20">
         <section className="col-span-9">
           <NewsDetailsCard></NewsDetailsCard>
         </section>
 
-        <section className="col-span-3">
+        <aside className="col-span-3">
           <RightAside></RightAside>
-        </section>
-      </div>
-    </div>
+        </aside>
+      </main>
+    </body>
   );
 };
 
