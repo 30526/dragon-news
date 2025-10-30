@@ -1,11 +1,13 @@
-import React, { use } from "react";
-import { Link, Navigate } from "react-router";
+import React, { use, useState } from "react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { signInUser } = use(AuthContext);
-
+  const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
@@ -15,8 +17,9 @@ const Login = () => {
       .then(() => {
         toast.success("Login Successful!");
         event.target.reset();
+        navigate(`${location?.state ? location.state : "/"}`);
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) => setError(error.code));
   };
 
   return (
@@ -34,14 +37,17 @@ const Login = () => {
                 type="email"
                 className="input"
                 placeholder="Email"
+                required
               />
               <label className="label">Password</label>
               <input
                 name="password"
                 type="password"
                 className="input"
+                required
                 placeholder="Password"
               />
+              {error && <p className="text-red-500 text-xs">{error}</p>}
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>

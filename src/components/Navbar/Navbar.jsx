@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
+  
 
   const handleSignOut = () => {
     signOutUser()
@@ -26,7 +27,11 @@ const Navbar = () => {
         <NavLink to={"/carrier"}>Carrier</NavLink>
       </nav>
       <nav className="flex gap-3 items-center">
-        <img className="rounded-full" src={userIcon} alt="" />
+        <img
+          className="rounded-full w-10"
+          src={user ? user.photoURL : userIcon}
+          alt=""
+        />
         {user ? (
           <Link
             to={"/"}

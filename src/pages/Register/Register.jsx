@@ -1,14 +1,20 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Provider/AuthContext";
 const Register = () => {
-  const { createUser, setUser } = use(AuthContext);
+  const { createUser, setUser, updateUser } = use(AuthContext);
+  const [nameError, setNameError] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
+    if (name.length < 5) {
+      setNameError("Name should be more than 5 character");
+      return;
+    }
     const photo = event.target.photo.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
@@ -16,7 +22,12 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        setUser(user);
+        updateUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+            navigate("/");
+          })
+          .catch((error) => console.log(error));
         event.target.reset();
         toast.success("Successfully Registered!");
       })
@@ -43,6 +54,7 @@ const Register = () => {
                 placeholder="Enter your name"
                 required
               />
+              {nameError && <p className="text-xs text-error">{nameError}</p>}
               <label className="label">Photo URL</label>
               <input
                 name="photo"
