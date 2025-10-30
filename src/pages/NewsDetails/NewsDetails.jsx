@@ -6,7 +6,8 @@ import { useParams } from "react-router";
 
 const NewsDetails = () => {
   const { id } = useParams();
-  
+  console.log("News ID:", id);
+
   return (
     <div className="w-11/12 mx-auto space-y-20">
       <Header></Header>
