@@ -11,6 +11,7 @@ const HomeLayout = () => {
   const { state } = useNavigation();
   return (
     <div>
+      <title>News Today</title>
       <header>
         <Header></Header>
       </header>

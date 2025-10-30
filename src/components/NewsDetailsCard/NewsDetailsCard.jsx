@@ -13,6 +13,7 @@ const NewsDetailsCard = () => {
   }, [newsDetails, id]);
   return (
     <div>
+      <title>{news?.title?.slice(0, 20)}</title>
       <h2 className="font-bold text-primary text-xl mb-4">Read Details</h2>
       <div className="p-4 border border-gray-200 shadow-xs rounded-lg">
         <img

@@ -27,7 +27,7 @@ const Register = () => {
             setUser({ ...user, displayName: name, photoURL: photo });
             navigate("/");
           })
-          .catch((error) => console.log(error));
+          .catch((error) => toast.error(error.code));
         event.target.reset();
         toast.success("Successfully Registered!");
       })
@@ -39,6 +39,7 @@ const Register = () => {
 
   return (
     <div className="flex justify-center min-h-screen items-center">
+      <title>Register here</title>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-xl">
         <p className="text-center pt-10 text-2xl font-semibold text-accent">
           Register Your Account
