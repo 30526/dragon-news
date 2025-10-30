@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB7xGYAiQRrjIy2C86E_Ahij8SLeckM-10",
-  authDomain: "dragon-news-29a30.firebaseapp.com",
-  projectId: "dragon-news-29a30",
-  storageBucket: "dragon-news-29a30.firebasestorage.app",
-  messagingSenderId: "496851353851",
-  appId: "1:496851353851:web:b42cfc967ccb88627d305e",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
